@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Cards — Interior Design</title>
+  </head>
+  <body>
+    <header class="header">
+      <span class="header__left">BY NISHIT</span>
+      <span class="header__center">Shuffle &rarr; Spread &rarr; Circular</span>
+      <span class="header__right">GSAP Flip</span>
+    </header>
+
+    <!-- The scroll track defines how long the scrubbable animation lasts. -->
+    <div class="scroll-track" id="scroll-track">
+      <!-- Everything visual is pinned in this sticky stage. -->
+      <div class="stage" id="stage">
+        <div class="content" id="content">
+          <h1 class="content__title" data-content="title"></h1>
+          <p class="content__text" data-content="text"></p>
+        </div>
+        <div class="cards" id="cards"></div>
+        <!-- Circular carousel: per-slide orbit, draggable with inertia. -->
+        <div class="carousel" id="carousel" js-carousel></div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
