@@ -95,7 +95,11 @@ export default class CircularCarousel {
 		});
 
 		this.slides.forEach((slide, i) => {
-			this._enterTl.to(slide, { ...this._posFor(i), duration: 1.6, ease: 'expo.out' }, (i / this.count) * 0.05);
+			this._enterTl.to(
+				slide,
+				{ ...this._posFor(i), duration: 1.6, ease: 'expo.out', force3D: true },
+				(i / this.count) * 0.05,
+			);
 		});
 	}
 
@@ -131,7 +135,7 @@ export default class CircularCarousel {
 					rotate: 0,
 					rotateY: 0,
 					duration: 0.7,
-					ease: 'power3.inOut',
+					ease: 'power3.in',
 				},
 				(i / this.count) * 0.04,
 			);

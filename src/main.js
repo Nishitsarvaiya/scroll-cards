@@ -150,9 +150,10 @@ function enter(c, onDone) {
 
 	activeTween = gsap.from([...titleSplit.words, ...textSplit.words], {
 		yPercent: 110,
-		duration: 0.8,
+		duration: 1,
 		ease: 'expo.out',
 		stagger: 0.04,
+		force3D: true,
 		onComplete: onDone,
 	});
 }
@@ -170,6 +171,7 @@ function exit(onDone) {
 			duration: 0.4,
 			ease: 'expo.in',
 			stagger: 0.03,
+			force3D: true,
 			onComplete: onDone,
 		},
 	);
@@ -184,7 +186,7 @@ function exit(onDone) {
  * Wider gaps give each exit room to finish before the next enter.
  * Symmetric in reverse. */
 function slotForProgress(p) {
-	if (p < 0.3) return 'shuffle';
+	if (p < 0.08) return 'shuffle';
 	if (p >= 0.3 && p < 0.6) return 'spread';
 	if (p >= 0.8) return 'drop';
 	return null;
@@ -235,6 +237,7 @@ gsap.from(cardEls, {
 		amount: 0.24,
 		from: 'center',
 	},
+	force3D: true,
 });
 
 /* =====================================================================
@@ -242,7 +245,7 @@ gsap.from(cardEls, {
  * ===================================================================== */
 
 const lenis = new Lenis({
-	lerp: 0.1,
+	lerp: 0.06,
 	smoothWheel: true,
 });
 
@@ -256,7 +259,7 @@ gsap.ticker.lagSmoothing(0);
  * ===================================================================== */
 
 const tl = gsap.timeline({
-	defaults: { ease: 'power2.inOut' },
+	defaults: { ease: 'power3.out', easeReverse: 'power3.in' },
 	scrollTrigger: {
 		trigger: '#scroll-track',
 		start: 'top top',
@@ -272,7 +275,19 @@ const tl = gsap.timeline({
 
 // --- Segment A: SHUFFLE → SPREAD (cards fan out, content stays) ---
 SPREAD.forEach((s, i) => {
-	tl.to(cardEls[i], { x: s.x, y: s.y, rotation: s.rotate, scale: s.scale }, 0);
+	tl.to(
+		cardEls[i],
+		{
+			x: s.x,
+			y: s.y,
+			rotation: s.rotate,
+			scale: s.scale,
+			ease: 'power3.inOut',
+			easeReverse: 'power3.inOut',
+			force3D: true,
+		},
+		0,
+	);
 });
 
 // --- Segment B: SPREAD → DROP (cards fall away) ---
@@ -280,7 +295,15 @@ const dropStart = 1; // position label after segment A
 DROP.forEach((s, i) => {
 	tl.to(
 		cardEls[i],
-		{ x: s.x, y: s.y, rotation: s.rotate, scale: s.scale, ease: 'power2.in' },
+		{
+			x: s.x,
+			y: s.y,
+			rotation: s.rotate,
+			scale: s.scale,
+			ease: 'power3.in',
+			easeReverse: 'power3.out',
+			force3D: true,
+		},
 		dropStart + i * 0.04, // slight stagger for a cascading drop
 	);
 });
