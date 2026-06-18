@@ -13,13 +13,13 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // 7 interior-design images from Unsplash (3/4-friendly crops).
 const IMAGES = [
-	'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&h=800&q=80',
-	'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&h=800&q=80',
-	'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=600&h=800&q=80',
-	'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&h=800&q=80',
-	'https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&w=600&h=800&q=80',
-	'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&h=800&q=80',
-	'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&h=800&q=80',
+	'/images/1.avif',
+	'/images/2.avif',
+	'/images/3.avif',
+	'/images/4.avif',
+	'/images/5.avif',
+	'/images/6.avif',
+	'/images/7.avif',
 ];
 
 const CARD_COUNT = IMAGES.length;
@@ -184,8 +184,8 @@ function exit(onDone) {
  * Wider gaps give each exit room to finish before the next enter.
  * Symmetric in reverse. */
 function slotForProgress(p) {
-	if (p < 0.08) return 'shuffle';
-	if (p >= 0.2 && p < 0.5) return 'spread';
+	if (p < 0.3) return 'shuffle';
+	if (p >= 0.3 && p < 0.6) return 'spread';
 	if (p >= 0.8) return 'drop';
 	return null;
 }

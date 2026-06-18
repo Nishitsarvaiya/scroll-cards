@@ -1,3 +1,14 @@
+@font-face {
+	font-family: 'PP Neue Montreal';
+	src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'PP Neue Montreal';
+	src: url('/fonts/PPNeueMontreal-Medium.otf') format('opentype');
+	font-weight: 500;
+}
+
 :root {
 	--bg: #ffffff;
 	--fg: #111111;
@@ -17,6 +28,7 @@ body {
 	background: var(--bg);
 	color: var(--fg);
 	font-family:
+		'PP Neue Montreal',
 		'Inter',
 		system-ui,
 		-apple-system,
@@ -65,7 +77,7 @@ html.lenis body {
 
 .content__title {
 	font-size: clamp(2.5rem, calc((96 / 1920) * 100vw), 12.8rem);
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: -0.02em;
 	line-height: 1.2;
 	max-width: 24ch;
